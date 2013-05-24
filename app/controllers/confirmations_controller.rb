@@ -6,7 +6,7 @@ class ConfirmationsController < ApplicationController
   def must_have_service_order
     service_order = ServiceOrder.find_by_id(params[:service_order_id])
     if service_order.blank?
-      redirect_to root_url, notice: "Service order number required."
+      redirect_to root_url, flash: { error: "Service order number required." }
     end
   end
 
@@ -16,7 +16,7 @@ class ConfirmationsController < ApplicationController
 
   def authorize_user
     if @confirmation.user != current_user
-      redirect_to confirmations_url, notice: "Nice try."
+      redirect_to confirmations_url, flash: { error: "Nice try." }
     end
   end
 

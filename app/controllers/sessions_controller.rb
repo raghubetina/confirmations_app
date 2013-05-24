@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url, notice: "Signed in successfully."
     else
-      flash[:notice] = "Something went wrong. Please try again."
+      flash[:error] = "Something went wrong. Please try again."
       render 'new'
     end
   end

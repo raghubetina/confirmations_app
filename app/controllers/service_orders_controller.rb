@@ -8,7 +8,7 @@ class ServiceOrdersController < ApplicationController
 
   def authorize_user
     if @service_order.user != current_user
-      redirect_to service_orders_url, notice: "Nice try."
+      redirect_to service_orders_url, flash: { error: "Nice try." }
     end
   end
 

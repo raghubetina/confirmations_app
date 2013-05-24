@@ -1,33 +1,13 @@
-<%= form_for(@service_order) do |f| %>
-  <% if @service_order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@service_order.errors.count, "error") %> prohibited this service_order from being saved:</h2>
+<%= simple_form_for @service_order, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <%= f.input :number %>
+    <%= f.input :description, input_html: { :rows => 5 } %>
+    <%= f.association :category %>
+    <%= f.input :budget %>
 
-      <ul>
-      <% @service_order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, :class => 'btn' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, rows: 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-  </div>
-  <div class="field">
-    <%= f.label :budget %><br />
-    <%= f.number_field :budget %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </fieldset>
 <% end %>

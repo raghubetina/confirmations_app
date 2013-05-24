@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   skip_before_filter :require_user, only: [:new, :create]
+  before_filter :authorize_user, except: [:new, :create, :index]
+
+  def authorize_user
+    @user = User.find(params[:id])
+    if @user.id != session[:user_id]
+      redirect_to :back, flash: { error: "Nice try." }
+    end
+  end
 
   # GET /users
   # GET /users.json

@@ -1,3 +1,17 @@
+<%= simple_form_for @confirmation, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <%= f.input :number %>
+    <%= f.input :description, input_html: { :rows => 5 } %>
+    <%= f.association :category %>
+    <%= f.input :budget %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>
+
 <%= form_for(@confirmation) do |f| %>
   <% if @confirmation.errors.any? %>
     <div id="error_explanation">
@@ -11,7 +25,7 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :service_order_id %>
+  <%= f.hidden_field :confirmation_id %>
 
   <div class="field">
     <%= f.label :number %><br />

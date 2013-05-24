@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     if current_user.blank?
-      redirect_to new_session_url, notice: "Must be signed in for that."
+      redirect_to new_session_url, flash: { error: "Must be signed in for that." }
     end
   end
 
