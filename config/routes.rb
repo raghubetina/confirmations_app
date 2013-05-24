@@ -1,4 +1,10 @@
 ConfirmationsApp::Application.routes.draw do
+  root to: 'ServiceOrders#index'
+
+
+  resource :session, only: [:new, :create, :destroy]
+
+
   resources :categories
 
 
