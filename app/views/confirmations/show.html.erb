@@ -44,5 +44,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_confirmation_path(@confirmation) %> |
-<%= link_to 'Back', confirmations_path %>
+<%= link_to 'Edit', edit_confirmation_path(@confirmation), class: 'btn btn-warning' %>
+<%= link_to 'Destroy', edit_confirmation_path(@confirmation), class: 'btn btn-danger' %>
+<%= link_to 'Back', confirmations_path, class: 'btn' %>

@@ -19,7 +19,7 @@
     <td><%= service_order.category.name %></td>
     <td><%= service_order.budget %></td>
     <td><%= service_order.user.full_name %></td>
-    <td><%= link_to "Add a Confirmation", new_confirmation_url(service_order_id: service_order.id), class: 'btn btn-success' %></td>
+    <td><%= link_to "Add Confirmation", new_confirmation_url(service_order_id: service_order.id), class: 'btn btn-success' %></td>
   </tr>
 <% end %>
 </table>
