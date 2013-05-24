@@ -1,4 +1,17 @@
 class ServiceOrdersController < ApplicationController
+  before_filter :find_object, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+
+  def find_object
+    @service_order = ServiceOrder.find(params[:id])
+  end
+
+  def authorize_user
+    if @service_order.user != current_user
+      redirect_to service_orders_url, notice: "Nice try."
+    end
+  end
+
   # GET /service_orders
   # GET /service_orders.json
   def index
@@ -13,8 +26,6 @@ class ServiceOrdersController < ApplicationController
   # GET /service_orders/1
   # GET /service_orders/1.json
   def show
-    @service_order = ServiceOrder.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @service_order }
@@ -34,13 +45,13 @@ class ServiceOrdersController < ApplicationController
 
   # GET /service_orders/1/edit
   def edit
-    @service_order = ServiceOrder.find(params[:id])
   end
 
   # POST /service_orders
   # POST /service_orders.json
   def create
     @service_order = ServiceOrder.new(params[:service_order])
+    @service_order.user_id = current_user.id
 
     respond_to do |format|
       if @service_order.save
@@ -56,8 +67,6 @@ class ServiceOrdersController < ApplicationController
   # PUT /service_orders/1
   # PUT /service_orders/1.json
   def update
-    @service_order = ServiceOrder.find(params[:id])
-
     respond_to do |format|
       if @service_order.update_attributes(params[:service_order])
         format.html { redirect_to @service_order, notice: 'Service order was successfully updated.' }
@@ -72,7 +81,6 @@ class ServiceOrdersController < ApplicationController
   # DELETE /service_orders/1
   # DELETE /service_orders/1.json
   def destroy
-    @service_order = ServiceOrder.find(params[:id])
     @service_order.destroy
 
     respond_to do |format|

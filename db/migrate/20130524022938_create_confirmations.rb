@@ -8,7 +8,7 @@ class CreateConfirmations < ActiveRecord::Migration
       t.integer :overtime_hours, default: 0
       t.integer :doubletime_hours, default: 0
       t.text :description
-      t.text :number
+      t.string :number
       t.integer :user_id
 
       t.timestamps

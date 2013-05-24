@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20130524023130) do
     t.integer  "overtime_hours",   :default => 0
     t.integer  "doubletime_hours", :default => 0
     t.text     "description"
-    t.text     "number"
+    t.string   "number"
     t.integer  "user_id"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false

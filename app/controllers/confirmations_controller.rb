@@ -1,4 +1,18 @@
 class ConfirmationsController < ApplicationController
+  before_filter :find_object, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+
+  def find_object
+    @confirmation = Confirmation.find(params[:id])
+  end
+
+  def authorize_user
+    if @confirmation.user != current_user
+      redirect_to confirmations_url, notice: "Nice try."
+    end
+  end
+
+
   # GET /confirmations
   # GET /confirmations.json
   def index
@@ -25,6 +39,7 @@ class ConfirmationsController < ApplicationController
   # GET /confirmations/new.json
   def new
     @confirmation = Confirmation.new
+    @confirmation.service_order_id = params[:service_order_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +56,7 @@ class ConfirmationsController < ApplicationController
   # POST /confirmations.json
   def create
     @confirmation = Confirmation.new(params[:confirmation])
+    @confirmation.user_id = current_user.id
 
     respond_to do |format|
       if @confirmation.save

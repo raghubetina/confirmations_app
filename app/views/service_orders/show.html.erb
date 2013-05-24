@@ -19,5 +19,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_service_order_path(@service_order) %> |
-<%= link_to 'Back', service_orders_path %>
+<%= link_to 'Edit', edit_service_order_path(@service_order), class: 'btn btn-warning' %>
+<%= link_to 'Delete', edit_service_order_path(@service_order), class: 'btn btn-danger' %>
+<%= link_to 'Back', service_orders_path, class: 'btn' %>

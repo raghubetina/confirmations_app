@@ -11,9 +11,11 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :service_order_id %>
+
   <div class="field">
-    <%= f.label :service_order_id %><br />
-    <%= f.number_field :service_order_id %>
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
   </div>
   <div class="field">
     <%= f.label :performed_on %><br />
@@ -38,14 +40,6 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_area :number %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
