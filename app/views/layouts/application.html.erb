@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <div class="navbar">
@@ -27,8 +28,6 @@
           <ul class="nav">
             <li><%= link_to "Service Orders", service_orders_url %></li>
             <li><%= link_to "Confirmations", confirmations_url %></li>
-            <li><%= link_to "Categories", categories_url %></li>
-            <li><%= link_to "Users", users_url %></li>
             <li class="divider-vertical"></li>
             <% if signed_in? %>
               <li><%= link_to current_user.full_name, current_user %></li>

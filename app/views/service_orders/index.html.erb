@@ -1,6 +1,6 @@
-<h1>Listing service_orders</h1>
-
 <%= link_to 'New Service order', new_service_order_path, class: 'btn btn-primary' %>
+
+<h2>Open Service Orders</h2>
 
 <table class="table table-striped table-hover">
   <tr>
@@ -12,7 +12,36 @@
     <th></th>
   </tr>
 
-<% @service_orders.each do |service_order| %>
+<% @open_service_orders.each do |service_order| %>
+  <tr>
+    <td><%= link_to service_order.number, service_order %></td>
+    <td><%= link_to service_order.description, service_order %></td>
+    <td><%= service_order.category.name %></td>
+    <% if service_order.category.name == "Callout" %>
+      <td>Total</td>
+      <td><%= service_order.total_hours %></td>
+    <% else %>
+      <td><%= service_order.budget %></td>
+      <td><%= service_order.remaining_hours %></td>
+    <% end %>
+    <td><%= link_to "Add Confirmation", new_confirmation_url(service_order_id: service_order.id), class: 'btn btn-success' %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Closed Service Orders</h2>
+
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Number</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Budget</th>
+    <th>Remaining</th>
+    <th></th>
+  </tr>
+
+<% @closed_service_orders.each do |service_order| %>
   <tr>
     <td><%= link_to service_order.number, service_order %></td>
     <td><%= link_to service_order.description, service_order %></td>

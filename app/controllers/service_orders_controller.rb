@@ -15,7 +15,8 @@ class ServiceOrdersController < ApplicationController
   # GET /service_orders
   # GET /service_orders.json
   def index
-    @service_orders = current_user.service_orders.order("created_at DESC")
+    @open_service_orders = current_user.service_orders.where(completed: false).order("created_at DESC")
+    @closed_service_orders = current_user.service_orders.where(completed: true).order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
