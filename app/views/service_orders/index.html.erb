@@ -8,7 +8,7 @@
     <th>Description</th>
     <th>Category</th>
     <th>Budget</th>
-    <th>User</th>
+    <th>Remaining</th>
     <th></th>
   </tr>
 
@@ -17,8 +17,13 @@
     <td><%= link_to service_order.number, service_order %></td>
     <td><%= link_to service_order.description, service_order %></td>
     <td><%= service_order.category.name %></td>
-    <td><%= service_order.budget %></td>
-    <td><%= service_order.user.full_name %></td>
+    <% if service_order.category.name == "Callout" %>
+      <td>Total</td>
+      <td><%= service_order.total_hours %></td>
+    <% else %>
+      <td><%= service_order.budget %></td>
+      <td><%= service_order.remaining_hours %></td>
+    <% end %>
     <td><%= link_to "Add Confirmation", new_confirmation_url(service_order_id: service_order.id), class: 'btn btn-success' %></td>
   </tr>
 <% end %>

@@ -45,5 +45,5 @@
 
 
 <%= link_to 'Edit', edit_confirmation_path(@confirmation), class: 'btn btn-warning' %>
-<%= link_to 'Destroy', edit_confirmation_path(@confirmation), class: 'btn btn-danger' %>
+<%= link_to 'Destroy', @confirmation, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', confirmations_path, class: 'btn' %>

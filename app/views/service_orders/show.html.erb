@@ -1,4 +1,19 @@
-<h1>Service Order #<%= @service_order.number %></h1>
+<h1>
+  Service Order #<%= @service_order.number %>
+  <% if @service_order.completed? %>
+    (Complete)
+  <% end %>
+</h1>
+
+
+<% if @service_order.completed? %>
+  <%= link_to 'Re-open', service_order_url(@service_order, "service_order[completed]" => false), method: 'put', class: 'btn btn-success' %>
+<% else %>
+  <%= link_to 'Complete', service_order_url(@service_order, "service_order[completed]" => true), method: 'put', class: 'btn btn-success' %>
+<% end %>
+<%= link_to 'Edit', edit_service_order_path(@service_order), class: 'btn btn-warning' %>
+<%= link_to 'Destroy', @service_order, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', service_orders_path, class: 'btn' %>
 
 <p>
   <b>Description:</b>
@@ -15,10 +30,24 @@
   <%= @service_order.budget %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @service_order.user.full_name %>
-</p>
+<table class="table">
+  <tr>
+    <th>Straight Hours</th>
+    <th>Travel Hours</th>
+    <th>Overtime Hours</th>
+    <th>Doubletime Hours</th>
+    <th>Total Hours</th>
+    <th>Remaining Hours</th>
+  </tr>
+  <tr>
+    <td><%= @service_order.straight_hours %></td>
+    <td><%= @service_order.travel_hours %></td>
+    <td><%= @service_order.overtime_hours %></td>
+    <td><%= @service_order.doubletime_hours %></td>
+    <td><%= @service_order.total_hours %></td>
+    <td><%= @service_order.remaining_hours %></td>
+  </tr>
+</table>
 
 <h3>Confirmations</h3>
 
@@ -35,7 +64,7 @@
     <th>Description</th>
   </tr>
 
-<% @service_order.confirmations.each do |confirmation| %>
+<% @service_order.confirmations.order("performed_on DESC").each do |confirmation| %>
   <tr>
     <td><%= link_to confirmation.number, confirmation, class: 'btn btn-primary' %></td>
     <td><%= confirmation.performed_on %></td>
@@ -47,7 +76,3 @@
   </tr>
 <% end %>
 </table>
-
-<%= link_to 'Edit', edit_service_order_path(@service_order), class: 'btn btn-warning' %>
-<%= link_to 'Destroy', edit_service_order_path(@service_order), class: 'btn btn-danger' %>
-<%= link_to 'Back', service_orders_path, class: 'btn' %>

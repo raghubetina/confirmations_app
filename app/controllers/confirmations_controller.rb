@@ -16,7 +16,7 @@ class ConfirmationsController < ApplicationController
   # GET /confirmations
   # GET /confirmations.json
   def index
-    @confirmations = current_user.confirmations
+    @confirmations = current_user.confirmations.order("performed_on DESC")
 
     respond_to do |format|
       format.html # index.html.erb

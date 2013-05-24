@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(:version => 20130524023130) do
     t.text     "description"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.integer  "budget"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "budget",      :default => 0
+    t.boolean  "completed",   :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "users", :force => true do |t|

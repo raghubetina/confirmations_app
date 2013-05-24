@@ -13,4 +13,11 @@ class Confirmation < ActiveRecord::Base
   validates :straight_hours, numericality: true
   validates :travel_hours, numericality: true
   validates :user, presence: true
+  validate :confirmation_must_belong_to_service_order_owner
+
+  def confirmation_must_belong_to_service_order_owner
+    if self.user != self.service_order.user
+      self.errors.add(:user_id, "is not the owner of this service order")
+    end
+  end
 end
