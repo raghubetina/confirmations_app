@@ -2,7 +2,7 @@ class ServiceOrdersController < ApplicationController
   # GET /service_orders
   # GET /service_orders.json
   def index
-    @service_orders = ServiceOrder.all
+    @service_orders = current_user.service_orders
 
     respond_to do |format|
       format.html # index.html.erb

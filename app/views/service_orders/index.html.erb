@@ -17,8 +17,8 @@
   <tr>
     <td><%= service_order.number %></td>
     <td><%= service_order.description %></td>
-    <td><%= service_order.category_id %></td>
-    <td><%= service_order.user_id %></td>
+    <td><%= service_order.category.name %></td>
+    <td><%= service_order.user.full_name %></td>
     <td><%= link_to 'Show', service_order %></td>
     <td><%= link_to 'Edit', edit_service_order_path(service_order) %></td>
     <td><%= link_to 'Destroy', service_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

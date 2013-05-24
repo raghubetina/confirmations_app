@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Number:</b>
   <%= @service_order.number %>
@@ -12,12 +10,12 @@
 
 <p>
   <b>Category:</b>
-  <%= @service_order.category_id %>
+  <%= @service_order.category.name %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @service_order.user_id %>
+  <%= @service_order.user.full_name %>
 </p>
 
 
