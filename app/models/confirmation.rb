@@ -20,4 +20,8 @@ class Confirmation < ActiveRecord::Base
       self.errors.add(:user_id, "is not the owner of this service order")
     end
   end
+
+  def total_hours
+    straight_hours + travel_hours + 1.5 * overtime_hours + 2 * doubletime_hours
+  end
 end
