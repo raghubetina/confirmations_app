@@ -11,6 +11,15 @@ class ServiceOrder < ActiveRecord::Base
   validates :number, presence: true
   validates :user, presence: true
 
+  # Callbacks
+  before_save :budget_should_be_zero_for_callouts
+
+  def budget_should_be_zero_for_callouts
+    if self.category.name == "Callout"
+      self.budget = 0
+    end
+  end
+
   def straight_hours
     self.confirmations.sum(:straight_hours)
   end

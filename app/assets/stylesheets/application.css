@@ -13,3 +13,7 @@
  *= require bootstrap-responsive.min
  *= require_tree .
  */
+
+#closed-service-orders {
+  display: none;
+}

@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -44,9 +46,11 @@
   </div>
   <div class="container">
     <% if notice.present? %>
-      <div class="alert">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= notice %>
+      <div class="row">
+        <div class="span12 alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= notice %>
+        </div>
       </div>
     <% end %>
     <%= yield %>
