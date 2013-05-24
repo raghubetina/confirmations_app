@@ -56,7 +56,7 @@ class ServiceOrdersController < ApplicationController
 
     respond_to do |format|
       if @service_order.save
-        format.html { redirect_to @service_order, notice: 'Service order was successfully created.' }
+        format.html { redirect_to service_orders_url, notice: 'Service order was successfully created.' }
         format.json { render json: @service_order, status: :created, location: @service_order }
       else
         format.html { render action: "new" }
@@ -70,7 +70,7 @@ class ServiceOrdersController < ApplicationController
   def update
     respond_to do |format|
       if @service_order.update_attributes(params[:service_order])
-        format.html { redirect_to @service_order, notice: 'Service order was successfully updated.' }
+        format.html { redirect_to service_orders_url, notice: 'Service order was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
