@@ -18,7 +18,7 @@
 
 <% @confirmations.each do |confirmation| %>
   <tr>
-    <td><%= confirmation.service_order_id %></td>
+    <td><%= confirmation.service_order.number %></td>
     <td><%= confirmation.performed_on %></td>
     <td><%= confirmation.travel_hours %></td>
     <td><%= confirmation.straight_hours %></td>
@@ -26,7 +26,7 @@
     <td><%= confirmation.doubletime_hours %></td>
     <td><%= confirmation.description %></td>
     <td><%= confirmation.number %></td>
-    <td><%= confirmation.user_id %></td>
+    <td><%= confirmation.user.full_name %></td>
     <td><%= link_to 'Show', confirmation %></td>
     <td><%= link_to 'Edit', edit_confirmation_path(confirmation) %></td>
     <td><%= link_to 'Destroy', confirmation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

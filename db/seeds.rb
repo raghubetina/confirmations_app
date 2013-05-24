@@ -5,3 +5,49 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Category.destroy_all
+categories = [
+  { name: 'T&E'},
+  { name: 'Fixed'},
+  { name: 'Callout'}
+]
+Category.create categories
+puts "#{Category.count} categories created."
+
+User.destroy_all
+users = [
+  { email: 'kyle@kyle.com', first_name: 'Kyle', last_name: 'Weldy', password: 'test', password_confirmation: 'test' },
+  { email: 'ryan@ryan.com', first_name: 'Ryan', last_name: 'Binkley', password: 'test', password_confirmation: 'test' }
+]
+User.create users
+puts "#{User.count} users created."
+
+ServiceOrder.destroy_all
+20.times do
+  service_order = {
+    category: Category.all.sample,
+    description: "Some service order #{rand(100000000)}",
+    number: "#{rand(1000)}",
+    user: User.all.sample
+  }
+  ServiceOrder.create service_order
+end
+puts "#{ServiceOrder.count} service orders created."
+
+Confirmation.destroy_all
+200.times do
+  confirmation = {
+    description: "Some confirmation #{rand(100000000)}",
+    doubletime_hours: (rand(20) + 1) / 5,
+    number: "#{rand(1000)}",
+    overtime_hours: (rand(20) + 1) / 5,
+    performed_on: Date.today - rand(730),
+    service_order: ServiceOrder.all.sample,
+    straight_hours: (rand(20) + 1) / 5,
+    travel_hours: (rand(20) + 1) / 5,
+    user: User.all.sample
+  }
+  Confirmation.create confirmation
+end
+puts "#{Confirmation.count} confirmations created."

@@ -2,7 +2,7 @@ class ConfirmationsController < ApplicationController
   # GET /confirmations
   # GET /confirmations.json
   def index
-    @confirmations = Confirmation.all
+    @confirmations = current_user.confirmations
 
     respond_to do |format|
       format.html # index.html.erb
