@@ -1,61 +1,17 @@
 <%= simple_form_for @confirmation, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
+    <%= f.input :service_order_id, as: :hidden %>
     <%= f.input :number %>
+    <%= f.input :performed_on %>
     <%= f.input :description, input_html: { :rows => 5 } %>
-    <%= f.association :category %>
-    <%= f.input :budget %>
+    <%= f.input :travel_hours %>
+    <%= f.input :straight_hours %>
+    <%= f.input :overtime_hours %>
+    <%= f.input :doubletime_hours %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', :back, :class => 'btn' %>
     </div>
   </fieldset>
-<% end %>
-
-<%= form_for(@confirmation) do |f| %>
-  <% if @confirmation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@confirmation.errors.count, "error") %> prohibited this confirmation from being saved:</h2>
-
-      <ul>
-      <% @confirmation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.hidden_field :confirmation_id %>
-
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :performed_on %><br />
-    <%= f.date_select :performed_on %>
-  </div>
-  <div class="field">
-    <%= f.label :travel_hours %><br />
-    <%= f.number_field :travel_hours %>
-  </div>
-  <div class="field">
-    <%= f.label :straight_hours %><br />
-    <%= f.number_field :straight_hours %>
-  </div>
-  <div class="field">
-    <%= f.label :overtime_hours %><br />
-    <%= f.number_field :overtime_hours %>
-  </div>
-  <div class="field">
-    <%= f.label :doubletime_hours %><br />
-    <%= f.number_field :doubletime_hours %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, rows: 5 %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
