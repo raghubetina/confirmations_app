@@ -1,5 +1,5 @@
 class ServiceOrder < ActiveRecord::Base
-  attr_accessible :category_id, :description, :number, :user_id, :user, :category
+  attr_accessible :category_id, :description, :number, :user_id, :user, :category, :budget
 
   # Associations
   belongs_to :category

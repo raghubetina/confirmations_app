@@ -29,25 +29,28 @@ ServiceOrder.destroy_all
     category: Category.all.sample,
     description: "Some service order #{rand(100000000)}",
     number: "#{rand(1000)}",
-    user: User.all.sample
+    user: User.all.sample,
+    budget: rand(200) + 20
   }
   ServiceOrder.create service_order
 end
 puts "#{ServiceOrder.count} service orders created."
 
 Confirmation.destroy_all
-200.times do
-  confirmation = {
-    description: "Some confirmation #{rand(100000000)}",
-    doubletime_hours: (rand(20) + 1) / 5,
-    number: "#{rand(1000)}",
-    overtime_hours: (rand(20) + 1) / 5,
-    performed_on: Date.today - rand(730),
-    service_order: ServiceOrder.all.sample,
-    straight_hours: (rand(20) + 1) / 5,
-    travel_hours: (rand(20) + 1) / 5,
-    user: User.all.sample
-  }
-  Confirmation.create confirmation
+ServiceOrder.all.each do |service_order|
+  (rand(15) + 1).times do
+    confirmation = {
+      description: "Some confirmation #{rand(100000000)}",
+      doubletime_hours: (rand(20) + 1) / 5,
+      number: "#{rand(1000)}",
+      overtime_hours: (rand(20) + 1) / 5,
+      performed_on: Date.today - rand(730),
+      service_order: service_order,
+      straight_hours: (rand(20) + 1) / 5,
+      travel_hours: (rand(20) + 1) / 5,
+      user: service_order.user
+    }
+    Confirmation.create confirmation
+  end
 end
 puts "#{Confirmation.count} confirmations created."

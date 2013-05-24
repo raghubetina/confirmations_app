@@ -5,6 +5,7 @@ class CreateServiceOrders < ActiveRecord::Migration
       t.text :description
       t.integer :category_id
       t.integer :user_id
+      t.integer :budget
 
       t.timestamps
     end
