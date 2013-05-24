@@ -1,6 +1,14 @@
 class ConfirmationsController < ApplicationController
   before_filter :find_object, only: [:show, :edit, :update, :destroy]
   before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+  before_filter :must_have_service_order, only: [:new]
+
+  def must_have_service_order
+    service_order = ServiceOrder.find_by_id(params[:service_order_id])
+    if service_order.blank?
+      redirect_to root_url, notice: "Service order number required."
+    end
+  end
 
   def find_object
     @confirmation = Confirmation.find(params[:id])

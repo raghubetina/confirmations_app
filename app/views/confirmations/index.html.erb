@@ -1,4 +1,4 @@
-<h1>Listing confirmations</h1>
+<h2>Your Confirmations</h2>
 
 <table class="table table-striped table-hover">
   <tr>
@@ -10,7 +10,6 @@
     <th>Overtime hours</th>
     <th>Doubletime hours</th>
     <th>Description</th>
-    <th>User</th>
   </tr>
 
 <% @confirmations.each do |confirmation| %>
@@ -23,7 +22,6 @@
     <td><%= confirmation.overtime_hours %></td>
     <td><%= confirmation.doubletime_hours %></td>
     <td><%= confirmation.description %></td>
-    <td><%= confirmation.user.full_name %></td>
   </tr>
 <% end %>
 </table>
