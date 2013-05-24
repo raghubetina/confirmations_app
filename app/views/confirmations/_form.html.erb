@@ -1,0 +1,53 @@
+<%= form_for(@confirmation) do |f| %>
+  <% if @confirmation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@confirmation.errors.count, "error") %> prohibited this confirmation from being saved:</h2>
+
+      <ul>
+      <% @confirmation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :service_order_id %><br />
+    <%= f.number_field :service_order_id %>
+  </div>
+  <div class="field">
+    <%= f.label :performed_on %><br />
+    <%= f.date_select :performed_on %>
+  </div>
+  <div class="field">
+    <%= f.label :travel_hours %><br />
+    <%= f.number_field :travel_hours %>
+  </div>
+  <div class="field">
+    <%= f.label :straight_hours %><br />
+    <%= f.number_field :straight_hours %>
+  </div>
+  <div class="field">
+    <%= f.label :overtime_hours %><br />
+    <%= f.number_field :overtime_hours %>
+  </div>
+  <div class="field">
+    <%= f.label :doubletime_hours %><br />
+    <%= f.number_field :doubletime_hours %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_area :number %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

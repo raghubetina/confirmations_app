@@ -1,0 +1,29 @@
+<h1>Listing service_orders</h1>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @service_orders.each do |service_order| %>
+  <tr>
+    <td><%= service_order.number %></td>
+    <td><%= service_order.description %></td>
+    <td><%= service_order.category_id %></td>
+    <td><%= service_order.user_id %></td>
+    <td><%= link_to 'Show', service_order %></td>
+    <td><%= link_to 'Edit', edit_service_order_path(service_order) %></td>
+    <td><%= link_to 'Destroy', service_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Service order', new_service_order_path %>

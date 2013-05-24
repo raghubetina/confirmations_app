@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  service_order_id: 1
+  performed_on: 2013-05-23
+  travel_hours: 1
+  straight_hours: 1
+  overtime_hours: 1
+  doubletime_hours: 1
+  description: MyText
+  number: MyText
+  user_id: 1
+
+two:
+  service_order_id: 1
+  performed_on: 2013-05-23
+  travel_hours: 1
+  straight_hours: 1
+  overtime_hours: 1
+  doubletime_hours: 1
+  description: MyText
+  number: MyText
+  user_id: 1
