@@ -1,6 +1,31 @@
-<%= link_to 'New Service Order', new_service_order_path, class: 'btn btn-primary' %>
+<div class="row">
+  <%= link_to 'New Service Order', new_service_order_path, class: 'btn btn-primary' %>
+</div>
 
-<h2>Open Service Orders</h2>
+<div class="row">
+  <div class="page-header">
+    <h2>Open Service Orders</h2>
+  </div>
+</div>
+
+<% @open_service_orders.each do |service_order| %>
+  <div class="row">
+    <div class="span2"><%= link_to service_order.number, service_order, class: 'btn btn-primary btn-block' %></div>
+    <div class="span5"><%= link_to service_order.description, service_order %></div>
+    <div class="span1"><span class="label pull-left"><%= service_order.category.name %></span></div>
+    <div class="span2">
+      <% if service_order.category.name == "Callout" %>
+        <span>Total</span>
+        <span class="pull-right"><%= service_order.total_hours %></span>
+      <% else %>
+        <span><%= service_order.budget %></span>
+        <span class="pull-right"><%= service_order.remaining_hours %></span>
+      <% end %>
+    </div>
+    <div class="span2"><%= link_to "Add Confirmation", new_confirmation_url(service_order_id: service_order.id), class: 'btn btn-success btn-block' %></div>
+  </div>
+<% end %>
+
 
 <table class="table table-striped table-hover">
   <tr>
