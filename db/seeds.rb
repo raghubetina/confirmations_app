@@ -18,7 +18,7 @@ puts "#{Category.count} categories created."
 User.destroy_all
 users = [
   { email: 'kyle@kyle.com', first_name: 'Kyle', last_name: 'Weldy', password: 'test', password_confirmation: 'test' },
-  { email: 'ryan@ryan.com', first_name: 'Ryan', last_name: 'Binkley', password: 'test', password_confirmation: 'test' }
+  { email: 'raghu@raghu.com', first_name: 'Raghu', last_name: 'Betina', password: 'test', password_confirmation: 'test' }
 ]
 User.create users
 puts "#{User.count} users created."
@@ -54,3 +54,31 @@ ServiceOrder.all.each do |service_order|
   end
 end
 puts "#{Confirmation.count} confirmations created."
+
+user = User.create email: 'rwbinkley@ra.rockwell.com', first_name: 'Ryan', last_name: 'Binkley', password: 'test', password_confirmation: 'test'
+require 'csv'
+
+months = %w(jan feb mar apr may)
+
+months.each do |month|
+  CSV.foreach("#{Rails.root}/db/seed_data/#{month}.csv", headers: true) do |row|
+    if row["Confirmation"].present?
+      so = ServiceOrder.where(:number => row['SO #']).first_or_create(user_id: user.id, category_id: Category.all.sample.id)
+      c = Confirmation.new
+      c.service_order = so
+      c.user = user
+      c.description = row['Daily Task']
+      c.performed_on = Date.strptime(row['Date'], "%m/%d/%y")
+      c.straight_hours = row['Reg Hrs'].to_f
+      c.overtime_hours = row['OT Hrs'].to_f
+      c.number = row['Confirmation']
+      c.save
+    end
+  end
+end
+
+puts "Created confirmations from CSV data."
+
+
+
+
