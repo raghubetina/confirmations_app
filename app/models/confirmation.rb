@@ -22,10 +22,10 @@ class Confirmation < ActiveRecord::Base
   end
 
   def total_hours
-    straight_hours + travel_hours + 1.5 * overtime_hours + 2 * doubletime_hours
+    (straight_hours + travel_hours + 1.5 * overtime_hours + 2 * doubletime_hours).round(3)
   end
 
   def raw_hours
-    straight_hours + travel_hours + overtime_hours + doubletime_hours
+    (straight_hours + travel_hours + overtime_hours + doubletime_hours).round(3)
   end
 end
