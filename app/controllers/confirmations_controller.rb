@@ -24,7 +24,7 @@ class ConfirmationsController < ApplicationController
   # GET /confirmations
   # GET /confirmations.json
   def index
-    @confirmations = current_user.confirmations.order("performed_on DESC")
+    @confirmations = current_user.confirmations.order("performed_on ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -68,7 +68,7 @@ class ConfirmationsController < ApplicationController
 
     respond_to do |format|
       if @confirmation.save
-        format.html { redirect_to @confirmation, notice: 'Confirmation was successfully created.' }
+        format.html { redirect_to service_orders_url, notice: 'Confirmation was successfully created.' }
         format.json { render json: @confirmation, status: :created, location: @confirmation }
       else
         format.html { render action: "new" }

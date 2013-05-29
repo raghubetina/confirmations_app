@@ -88,7 +88,7 @@
       <th>Description</th>
     </tr>
 
-  <% @service_order.confirmations.order("performed_on DESC").each do |confirmation| %>
+  <% @service_order.confirmations.order("performed_on ASC").each do |confirmation| %>
     <tr>
       <td><%= link_to "##{confirmation.number}", confirmation, class: 'btn btn-primary btn-block' %></td>
       <td><%= confirmation.performed_on.strftime("%a, %b %e, %Y") %></td>

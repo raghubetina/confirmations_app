@@ -7,7 +7,7 @@ class Confirmation < ActiveRecord::Base
 
   # Validations
   validates :doubletime_hours, numericality: true
-  validates :number, presence: true
+  validates :number, presence: true, uniqueness: true
   validates :overtime_hours, numericality: true
   validates :performed_on, presence: true
   validates :straight_hours, numericality: true
@@ -23,5 +23,9 @@ class Confirmation < ActiveRecord::Base
 
   def total_hours
     straight_hours + travel_hours + 1.5 * overtime_hours + 2 * doubletime_hours
+  end
+
+  def raw_hours
+    straight_hours + travel_hours + overtime_hours + doubletime_hours
   end
 end

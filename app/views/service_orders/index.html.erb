@@ -1,3 +1,10 @@
+<section id="utilization">
+  <h3><%= @today.strftime("%b %Y") %> Utilization (<%= @utilization %>%)</h3>
+  <div class="progress progress-striped progress-success">
+    <div class="bar" style="width: <%= @utilization %>%;"></div>
+  </div>
+</section>
+
 <%= link_to 'New Service Order', new_service_order_path, class: 'btn btn-large' %>
 
 <section id="open-service-orders">
