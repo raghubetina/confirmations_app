@@ -22,15 +22,15 @@ ActiveRecord::Schema.define(:version => 20130524023130) do
   create_table "confirmations", :force => true do |t|
     t.integer  "service_order_id"
     t.date     "performed_on"
-    t.integer  "travel_hours",     :default => 0
-    t.integer  "straight_hours",   :default => 0
-    t.integer  "overtime_hours",   :default => 0
-    t.integer  "doubletime_hours", :default => 0
+    t.float    "travel_hours",     :default => 0.0
+    t.float    "straight_hours",   :default => 0.0
+    t.float    "overtime_hours",   :default => 0.0
+    t.float    "doubletime_hours", :default => 0.0
     t.text     "description"
     t.string   "number"
     t.integer  "user_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "service_orders", :force => true do |t|
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20130524023130) do
     t.text     "description"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.integer  "budget",      :default => 0
+    t.float    "budget",      :default => 0.0
     t.boolean  "completed",   :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false

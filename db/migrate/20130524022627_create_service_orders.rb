@@ -5,7 +5,7 @@ class CreateServiceOrders < ActiveRecord::Migration
       t.text :description
       t.integer :category_id
       t.integer :user_id
-      t.integer :budget, default: 0
+      t.float :budget, default: 0
       t.boolean :completed, default: false
 
       t.timestamps
