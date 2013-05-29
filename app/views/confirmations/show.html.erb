@@ -1,54 +1,40 @@
-<p>
-  <b>Service order:</b>
-  <%= @confirmation.service_order.number %>
-</p>
+<section id="confirmation-summary">
+  <div class="page-header">
+    <h3>Confirmation #<%= @confirmation.number %><h3>
+  </div>
 
-<p>
-  <b>Performed on:</b>
-  <%= @confirmation.performed_on %>
-</p>
+  <dl class="dl-horizontal">
+    <dt>Service Order</dt>
+    <dd><%= @confirmation.service_order.number %></dd>
 
-<p>
-  <b>Total hours:</b>
-  <%= @confirmation.total_hours %>
-</p>
+    <dt>User:</dt>
+    <dd><%= @confirmation.user.full_name %></dd>
 
-<p>
-  <b>Travel hours:</b>
-  <%= @confirmation.travel_hours %>
-</p>
+    <dt>Performed On</dt>
+    <dd><%= @confirmation.performed_on.strftime("%b %e, %Y") %></dd>
 
-<p>
-  <b>Straight hours:</b>
-  <%= @confirmation.straight_hours %>
-</p>
+    <dt>Total Hours</dt>
+    <dd><%= @confirmation.total_hours %></dd>
 
-<p>
-  <b>Overtime hours:</b>
-  <%= @confirmation.overtime_hours %>
-</p>
+    <dt>Travel hours:</dt>
+    <dd><%= @confirmation.travel_hours %></dd>
 
-<p>
-  <b>Doubletime hours:</b>
-  <%= @confirmation.doubletime_hours %>
-</p>
+    <dt>Straight hours:</dt>
+    <dd><%= @confirmation.straight_hours %></dd>
 
-<p>
-  <b>Description:</b>
-  <%= @confirmation.description %>
-</p>
+    <dt>Overtime hours:</dt>
+    <dd><%= @confirmation.overtime_hours %></dd>
 
-<p>
-  <b>Number:</b>
-  <%= @confirmation.number %>
-</p>
+    <dt>Doubletime hours:</dt>
+    <dd><%= @confirmation.doubletime_hours %></dd>
 
-<p>
-  <b>User:</b>
-  <%= @confirmation.user.full_name %>
-</p>
+    <dt>Description:</dt>
+    <dd><%= @confirmation.description %>&nbsp;</dd>
+  </dl>
+</section>
 
-
-<%= link_to 'Edit', edit_confirmation_path(@confirmation), class: 'btn btn-warning' %>
-<%= link_to 'Destroy', @confirmation, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back', :back, class: 'btn' %>
+<div class="form-actions">
+  <%= link_to 'Edit', edit_confirmation_path(@confirmation), class: 'btn btn-warning' %>
+  <%= link_to 'Destroy', @confirmation, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Back', :back, class: 'btn' %>
+</div>

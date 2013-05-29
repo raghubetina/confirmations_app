@@ -1,18 +1,15 @@
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+<dl>
+  <dt>Email</dt>
+  <dd><%= @user.email %></dd>
 
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
+  <dt>First name:</dt>
+  <dd><%= @user.first_name %></dd>
 
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
+  <dt>Last name:</dt>
+  <dd><%= @user.last_name %></dd>
+</dl>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', :back %>
+<div class="form-actions">
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning' %>
+  <%= link_to 'Back', :back, class: 'btn' %>
+</div>

@@ -12,32 +12,31 @@
   // instantiates the pie chart, passes in the data and
   // draws it.
   function drawChart() {
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Hours');
+    data.addColumn('number', 'Effective');
+    data.addRows([
+      ['Travel (<%= @service_order.travel_hours %>)', <%= @service_order.travel_hours %>],
+      ['Straight (<%= @service_order.straight_hours %>)', <%= @service_order.straight_hours %>],
+      ['OT (<%= @service_order.overtime_hours %>)', <%= @service_order.overtime_hours * 1.5 %>],
+      ['DT (<%= @service_order.doubletime_hours %>)', <%= @service_order.doubletime_hours * 2 %>],
+      ['Remaining (<%= @service_order.remaining_hours %>)', <%= @service_order.remaining_hours >= 0 ? @service_order.remaining_hours : 0 %>]
+    ]);
 
-  // Create the data table.
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Hours');
-  data.addColumn('number', 'Effective');
-  data.addRows([
-    ['Travel (<%= @service_order.travel_hours %>)', <%= @service_order.travel_hours %>],
-    ['Straight (<%= @service_order.straight_hours %>)', <%= @service_order.straight_hours %>],
-    ['OT (<%= @service_order.overtime_hours %>)', <%= @service_order.overtime_hours * 1.5 %>],
-    ['DT (<%= @service_order.doubletime_hours %>)', <%= @service_order.doubletime_hours * 2 %>],
-    ['Remaining (<%= @service_order.remaining_hours %>)', <%= @service_order.remaining_hours >= 0 ? @service_order.remaining_hours : 0 %>]
-  ]);
+    // Set chart options
+    var options = {
+                    chartArea: { left: 0, top: 6, width: 320},
+                    is3D: true,
+                    pieSliceText: 'value',
+                    legend: { position: 'left', textStyle: { fontSize: 12} },
+                    colors: ['green', '#00FFFF', 'blue', 'purple', 'red']
+                  };
 
-  // Set chart options
-  var options = {
-                  chartArea: { left: 0, top: 6, width: 320},
-                  is3D: true,
-                  pieSliceText: 'value',
-                  legend: { position: 'left', textStyle: { fontSize: 12} },
-                  colors: ['green', '#00FFFF', 'blue', 'purple', 'red']
-                };
-
-  // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-  chart.draw(data, options);
-}
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
 </script>
 
 <section id="service-order-summary">
@@ -53,13 +52,15 @@
     </h3>
   </div>
 
-  <% if @service_order.completed? %>
-    <%= link_to 'Re-open', service_order_url(@service_order, "service_order[completed]" => false), method: 'put', class: 'btn btn-success' %>
-  <% else %>
-    <%= link_to 'Complete', service_order_url(@service_order, "service_order[completed]" => true), method: 'put', class: 'btn btn-success' %>
-  <% end %>
-  <%= link_to 'Edit', edit_service_order_path(@service_order), class: 'btn btn-warning' %>
-  <%= link_to 'Destroy', @service_order, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div class="form-actions">
+    <% if @service_order.completed? %>
+      <%= link_to 'Re-open', service_order_url(@service_order, "service_order[completed]" => false), method: 'put', class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to 'Complete', service_order_url(@service_order, "service_order[completed]" => true), method: 'put', class: 'btn btn-success' %>
+    <% end %>
+    <%= link_to 'Edit', edit_service_order_path(@service_order), class: 'btn btn-warning' %>
+    <%= link_to 'Destroy', @service_order, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
 
   <p class="lead" style="margin: 15px 0">
     <%= @service_order.description %>
