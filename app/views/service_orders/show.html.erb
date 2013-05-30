@@ -43,12 +43,12 @@
   <div class="page-header">
     <h1>
       SO <%= @service_order.number %>
-      <small style="margin-top: 10px">
+      <p class="lead muted">
         <%= @service_order.category.name %>
         <% if @service_order.completed? %>
           (Complete)
         <% end %>
-      </small>
+      </p>
     </h1>
   </div>
 
