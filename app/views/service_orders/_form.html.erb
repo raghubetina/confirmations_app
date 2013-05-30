@@ -1,4 +1,8 @@
 <%= simple_form_for @service_order, :html => { :class => 'form-horizontal' } do |f| %>
+  <% @service_order.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+
   <fieldset>
     <%= f.input :number %>
     <%= f.input :description, input_html: { :rows => 2 } %>

@@ -9,13 +9,13 @@ class ServiceOrdersController < ApplicationController
 
   def owner
     if @service_order.user != current_user
-      redirect_to :back, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "You are not authorized to manage this service order." }
     end
   end
 
   def viewer
     if !(@service_order.viewers.include? current_user) && @service_order.user != current_user
-      redirect_to :back, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "You are not authorized to view this service order." }
     end
   end
 

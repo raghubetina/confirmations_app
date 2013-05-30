@@ -12,7 +12,7 @@ class SharesController < ApplicationController
   def authorize_user
     @share = Share.find(params[:id])
     if @share.service_order.user != current_user
-      redirect_to confirmations_url, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "You can only manage sharing for your own service orders." }
     end
   end
 

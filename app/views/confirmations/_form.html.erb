@@ -1,4 +1,8 @@
 <%= simple_form_for @confirmation, :html => { :class => 'form-horizontal' } do |f| %>
+  <% @confirmation.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+
   <fieldset>
     <%= f.input :service_order_id, as: :hidden %>
     <%= f.input :number %>

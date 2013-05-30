@@ -17,13 +17,13 @@ class ConfirmationsController < ApplicationController
 
   def owner
     if @confirmation.user != current_user
-      redirect_to :back, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "You are not authorized to manage this confirmation." }
     end
   end
 
   def viewer
     if !(@confirmation.service_order.viewers.include? current_user) && @confirmation.user != current_user
-      redirect_to :back, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "You are not authorized to view this confirmation." }
     end
   end
 
