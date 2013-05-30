@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   skip_before_filter :require_user, only: [:new, :create]
   before_filter :authorize_user, except: [:new, :create, :index]
+  before_filter :require_admin, only: [:index]
+
+  def require_admin
+    unless session[:admin].present?
+      redirect_to root_url, flash: { error: "Must be an admin for that." }
+    end
+  end
 
   def authorize_user
     @user = User.find(params[:id])

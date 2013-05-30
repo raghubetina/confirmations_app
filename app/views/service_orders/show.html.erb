@@ -54,13 +54,13 @@
 
   <div class="form-actions">
     <% if @service_order.completed? %>
-      <%= link_to 'Re-open', service_order_url(@service_order, "service_order[completed]" => false), method: 'put', class: 'btn btn-success' %>
+      <%= link_to '<i class="icon-folder-open icon-2x"></i>'.html_safe, service_order_url(@service_order, "service_order[completed]" => false), method: 'put', class: 'btn btn-success btn-graphic', 'data-toggle' => 'tooltip', title: 'Re-open' %>
     <% else %>
-      <%= link_to 'Complete', service_order_url(@service_order, "service_order[completed]" => true), method: 'put', class: 'btn btn-success' %>
+      <%= link_to '<i class="icon-ok icon-2x"></i>'.html_safe, service_order_url(@service_order, "service_order[completed]" => true), method: 'put', class: 'btn btn-success btn-graphic', 'data-toggle' => 'tooltip', title: 'Complete'  %>
     <% end %>
-    <%= link_to 'Edit', edit_service_order_path(@service_order), class: 'btn btn-warning' %>
-    <%= link_to 'Destroy', @service_order, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= link_to 'Sharing', new_share_url(service_order_id: @service_order.id), class: 'btn' %>
+    <%= link_to '<i class="icon-edit icon-2x"></i>'.html_safe, edit_service_order_path(@service_order), class: 'btn btn-warning btn-graphic', 'data-toggle' => 'tooltip', title: 'Edit' %>
+    <%= link_to '<i class="icon-trash icon-2x"></i>'.html_safe, @service_order, class: 'btn btn-danger btn-graphic', method: :delete, data: { confirm: 'Are you sure?' }, 'data-toggle' => 'tooltip', title: 'Delete' %>
+    <%= link_to '<i class="icon-group icon-2x"></i>'.html_safe, new_share_url(service_order_id: @service_order.id), class: 'btn btn-graphic', 'data-toggle' => 'tooltip', title: 'Sharing' %>
   </div>
 
   <p class="lead" style="margin: 15px 0">

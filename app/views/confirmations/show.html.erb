@@ -34,7 +34,7 @@
 </section>
 
 <div class="form-actions">
-  <%= link_to 'Edit', edit_confirmation_path(@confirmation), class: 'btn btn-warning' %>
-  <%= link_to 'Destroy', @confirmation, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
-  <%= link_to 'Back', :back, class: 'btn' %>
+  <%= link_to '<i class="icon-arrow-left icon-2x"></i>'.html_safe, :back, class: 'btn btn-graphic', 'data-toggle' => 'tooltip', title: 'Back' %>
+  <%= link_to '<i class="icon-edit icon-2x"></i>'.html_safe, edit_confirmation_path(@confirmation), class: 'btn btn-warning btn-graphic', 'data-toggle' => 'tooltip', title: 'Edit' %>
+  <%= link_to '<i class="icon-trash icon-2x"></i>'.html_safe, @confirmation, class: 'btn btn-danger btn-graphic', method: :delete, data: { confirm: 'Are you sure?' }, 'data-toggle' => 'tooltip', title: 'Delete' %>
 </div>
