@@ -34,7 +34,7 @@ class SharesController < ApplicationController
     @share = Share.new(params[:share])
 
     if @share.service_order.user != current_user
-      redirect_to confirmations_url, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "You can only manage sharing for your own service orders." }
       return
     end
 
