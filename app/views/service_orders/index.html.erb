@@ -5,11 +5,12 @@
   </div>
 </section>
 
-<%= link_to 'New Service Order', new_service_order_path, class: 'btn btn-large' %>
-
 <section id="open-service-orders">
   <div class="page-header">
-    <h3>Open Service Orders</h3>
+    <h3>
+      Open Service Orders
+      <%= link_to '<i class="icon-plus"></i>'.html_safe, new_service_order_path, class: 'btn', style: 'margin-bottom: 5px' %>
+    </h3>
   </div>
 
   <%= render 'service_orders', service_orders: @open_service_orders %>
