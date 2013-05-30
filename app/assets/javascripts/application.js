@@ -17,8 +17,8 @@
 $(document).ready(function() {
   $(".alert").alert();
 
-  $("#toggle-closed-service-orders").on("click", function() {
-    $("#closed-service-orders").slideToggle();
-    return false;
-  });
+  $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
 });

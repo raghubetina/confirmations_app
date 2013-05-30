@@ -58,6 +58,12 @@ puts "#{Confirmation.count} confirmations created."
 user = User.create email: 'rwbinkley@ra.rockwell.com', first_name: 'Ryan', last_name: 'Binkley', password: 'test', password_confirmation: 'test'
 require 'csv'
 
+shared_service_orders = ServiceOrder.all.sample(10)
+shared_service_orders.each do |service_order|
+  share = Share.create service_order: service_order, shared_with: user
+end
+puts "#{Share.count} service orders shared."
+
 months = %w(jan feb mar apr may)
 
 months.each do |month|
@@ -78,7 +84,3 @@ months.each do |month|
 end
 
 puts "Created confirmations from CSV data."
-
-
-
-

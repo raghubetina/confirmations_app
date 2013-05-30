@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to confirmation.number, confirmation, class: 'btn btn-primary' %></td>
     <td><%= link_to confirmation.service_order.number, confirmation.service_order %></td>
-    <td><%= confirmation.performed_on %></td>
+    <td><%= confirmation.performed_on.strftime("%a, %b %e, %Y") %></td>
     <td><%= confirmation.travel_hours %></td>
     <td><%= confirmation.straight_hours %></td>
     <td><%= confirmation.overtime_hours %></td>

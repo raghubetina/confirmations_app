@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   # Associations
   has_many :confirmations
   has_many :service_orders
+  has_many :shares, class_name: 'Share', foreign_key: 'shared_with_id'
+  has_many :viewable, through: :shares, source: 'service_order'
 
   # Validations
   validates :email, presence: true, uniqueness: { :case_sensitive => false }

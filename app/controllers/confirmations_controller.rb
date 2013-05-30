@@ -1,6 +1,7 @@
 class ConfirmationsController < ApplicationController
   before_filter :find_object, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+  before_filter :owner, only: [:edit, :update, :destroy]
+  before_filter :viewer, only: [:show]
   before_filter :must_have_service_order, only: [:new]
 
   def must_have_service_order
@@ -14,9 +15,15 @@ class ConfirmationsController < ApplicationController
     @confirmation = Confirmation.find(params[:id])
   end
 
-  def authorize_user
+  def owner
     if @confirmation.user != current_user
-      redirect_to confirmations_url, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "Nice try." }
+    end
+  end
+
+  def viewer
+    if !(@confirmation.service_order.viewers.include? current_user) && @confirmation.user != current_user
+      redirect_to :back, flash: { error: "Nice try." }
     end
   end
 

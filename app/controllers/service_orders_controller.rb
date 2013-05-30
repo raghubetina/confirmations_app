@@ -1,14 +1,21 @@
 class ServiceOrdersController < ApplicationController
   before_filter :find_object, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+  before_filter :owner, only: [:edit, :update, :destroy]
+  before_filter :viewer, only: [:show]
 
   def find_object
     @service_order = ServiceOrder.find(params[:id])
   end
 
-  def authorize_user
+  def owner
     if @service_order.user != current_user
-      redirect_to service_orders_url, flash: { error: "Nice try." }
+      redirect_to :back, flash: { error: "Nice try." }
+    end
+  end
+
+  def viewer
+    if !(@service_order.viewers.include? current_user) && @service_order.user != current_user
+      redirect_to :back, flash: { error: "Nice try." }
     end
   end
 
@@ -17,6 +24,7 @@ class ServiceOrdersController < ApplicationController
   def index
     @open_service_orders = current_user.service_orders.where(completed: false).order("created_at DESC")
     @closed_service_orders = current_user.service_orders.where(completed: true).order("created_at DESC")
+    @shared_service_orders = current_user.viewable.order("created_at DESC")
 
     @today = Date.today
     first_day_of_month = @today.beginning_of_month

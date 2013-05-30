@@ -5,6 +5,8 @@ class ServiceOrder < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   has_many :confirmations
+  has_many :shares
+  has_many :viewers, through: :shares, source: :shared_with
 
   # Validations
   validates :category, presence: true

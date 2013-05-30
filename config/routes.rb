@@ -1,4 +1,7 @@
 ConfirmationsApp::Application.routes.draw do
+  resources :shares, only: [:new, :create, :destroy]
+
+
   root to: 'ServiceOrders#index'
 
 

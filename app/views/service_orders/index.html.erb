@@ -5,23 +5,29 @@
   </div>
 </section>
 
-<section id="open-service-orders">
+<section id="service-orders">
   <div class="page-header">
     <h3>
-      Open Service Orders
+      Service Orders
       <%= link_to '<i class="icon-plus"></i>'.html_safe, new_service_order_path, class: 'btn', style: 'margin-bottom: 5px' %>
     </h3>
   </div>
 
-  <%= render 'service_orders', service_orders: @open_service_orders %>
-</section>
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#open">Open</a></li>
+    <li><a href="#closed">Closed</a></li>
+    <li><a href="#shared">Shared</a></li>
+  </ul>
 
-<%= link_to 'Closed Service Orders', "#", class: 'btn btn-large', id: 'toggle-closed-service-orders' %>
-
-<section id="closed-service-orders">
-  <div class="page-header">
-    <h3>Closed Service Orders</h3>
+  <div class="tab-content">
+    <div class="tab-pane active" id="open">
+      <%= render 'service_orders', service_orders: @open_service_orders %>
+    </div>
+    <div class="tab-pane" id="closed">
+      <%= render 'service_orders', service_orders: @closed_service_orders %>
+    </div>
+    <div class="tab-pane" id="shared">
+      <%= render 'service_orders', service_orders: @shared_service_orders %>
+    </div>
   </div>
-
-  <%= render 'service_orders', service_orders: @closed_service_orders %>
 </section>

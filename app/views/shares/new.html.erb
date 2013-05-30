@@ -1,0 +1,28 @@
+<h3>Share Service Order</h3>
+
+<%= simple_form_for(@share) do |f| %>
+  <% @share.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+  <fieldset>
+    <%= f.input :service_order_id, as: :hidden %>
+    <%= f.input :shared_with_id, label: 'Share with:' do %>
+      <%= f.collection_select :shared_with_id, User.all - [current_user] - @share.service_order.viewers, :id, :full_name %>
+    <% end %>
+
+    <div class="form-actions">
+      <%= f.submit 'Share', :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>
+
+<h6>Currently Shared With</h6>
+<ul class="unstyled">
+  <% @share.service_order.shares.each do |share| %>
+    <li>
+      <%= share.shared_with.full_name %>
+      <%= link_to '<i class="icon-ban-circle"></i>'.html_safe, share, method: 'delete', class: 'btn btn-small btn-danger' %>
+    </li>
+  <% end %>
+</ul>

@@ -1,9 +1,9 @@
 <% service_orders.each do |service_order| %>
   <div class="row">
-    <div class="span12 well">
+    <div class="span11 well">
       <div class="row">
         <div class="span2"><%= link_to "##{service_order.number}", service_order, class: 'btn btn-primary btn-large btn-block' %></div>
-        <div class="span4">
+        <div class="span3">
           <p class="lead" style="margin: 15px 0">
             <span class="label label-inverse">
               <%= service_order.category.name %>
