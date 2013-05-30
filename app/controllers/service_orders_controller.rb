@@ -32,14 +32,14 @@ class ServiceOrdersController < ApplicationController
 
     weekdays = @today.downto(first_day_of_month).count { |day| (1..5).include?(day.wday) }
 
-    available_hours = weekdays * 8
+    @workable_hours = weekdays * 8
 
     this_months_confirmations = current_user.confirmations.where("performed_on >= ? AND performed_on <= ?",
       first_day_of_month, last_day_of_month)
 
-    this_months_raw_hours = this_months_confirmations.map(&:raw_hours).reduce(&:+)
+    @this_months_raw_hours = this_months_confirmations.map(&:raw_hours).reduce(&:+)
 
-    @utilization = ((this_months_raw_hours.to_f / available_hours) * 100).round
+    @utilization = ((@this_months_raw_hours.to_f / @workable_hours) * 100).round
 
     respond_to do |format|
       format.html # index.html.erb

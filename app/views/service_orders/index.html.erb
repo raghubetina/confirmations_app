@@ -1,8 +1,9 @@
 <section id="utilization">
-  <h3><%= @today.strftime("%b %Y") %> Utilization (<%= @utilization %>%)</h3>
+  <h3><%= @today.strftime("%b %Y") %> Utilization</h3>
   <div class="progress progress-striped progress-success">
     <div class="bar" style="width: <%= @utilization %>%;"></div>
   </div>
+  <h4 class="muted"><%= @utilization %>% (<%= @this_months_raw_hours %>/<%= @workable_hours %> workable)</h4>
 </section>
 
 <section id="service-orders">
