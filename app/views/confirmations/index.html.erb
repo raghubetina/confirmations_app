@@ -1,22 +1,22 @@
 <h3>Your Confirmations</h3>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-condensed" style="font-size: x-small">
   <tr>
     <th>Number</th>
-    <th>Service order</th>
-    <th>Performed on</th>
-    <th>Travel hours</th>
-    <th>Straight hours</th>
-    <th>Overtime hours</th>
-    <th>Doubletime hours</th>
+    <th>SO #</th>
+    <th>Performed</th>
+    <th>Travel</th>
+    <th>Straight</th>
+    <th>OT</th>
+    <th>DT</th>
     <th>Description</th>
   </tr>
 
 <% @confirmations.each do |confirmation| %>
   <tr>
-    <td><%= link_to confirmation.number, confirmation, class: 'btn btn-primary' %></td>
+    <td><%= link_to confirmation.number, confirmation, class: 'btn btn-primary btn-small' %></td>
     <td><%= link_to confirmation.service_order.number, confirmation.service_order %></td>
-    <td><%= confirmation.performed_on.strftime("%a, %b %e, %Y") %></td>
+    <td><%= confirmation.performed_on.strftime("%d-%b-%y") %></td>
     <td><%= confirmation.travel_hours %></td>
     <td><%= confirmation.straight_hours %></td>
     <td><%= confirmation.overtime_hours %></td>
