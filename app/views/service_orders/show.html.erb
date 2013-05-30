@@ -43,11 +43,11 @@
   <div class="page-header">
     <h1>
       SO <%= @service_order.number %>
-      <% if @service_order.completed? %>
-        (Complete)
-      <% end %>
-      <small>
+      <small style="margin-top: 10px">
         <%= @service_order.category.name %>
+        <% if @service_order.completed? %>
+          (Complete)
+        <% end %>
       </small>
     </h1>
   </div>
