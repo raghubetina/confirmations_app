@@ -41,15 +41,15 @@
 
 <section id="service-order-summary">
   <div class="page-header">
-    <h3>
-      SO #<%= @service_order.number %>
+    <h1>
+      SO <%= @service_order.number %>
       <% if @service_order.completed? %>
         (Complete)
       <% end %>
-      <span class="label label-inverse">
+      <small>
         <%= @service_order.category.name %>
-      </span>
-    </h3>
+      </small>
+    </h1>
   </div>
 
   <div class="form-actions">
