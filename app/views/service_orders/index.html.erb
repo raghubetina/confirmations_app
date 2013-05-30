@@ -3,7 +3,7 @@
   <div class="progress progress-striped progress-success">
     <div class="bar" style="width: <%= @utilization %>%;"></div>
   </div>
-  <h4 class="muted"><%= @utilization %>% (<%= @this_months_raw_hours %>/<%= @workable_hours %> workable)</h4>
+  <p class="lead muted"><%= @utilization %>% (<%= @this_months_raw_hours %>/<%= @workable_hours %> workable)</p>
 </section>
 
 <section id="service-orders">
