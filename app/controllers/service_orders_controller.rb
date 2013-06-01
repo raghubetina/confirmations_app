@@ -39,7 +39,11 @@ class ServiceOrdersController < ApplicationController
 
     @this_months_raw_hours = this_months_confirmations.map(&:raw_hours).reduce(&:+)
 
-    @utilization = ((@this_months_raw_hours.to_f / @workable_hours) * 100).round
+    if @workable_hours > 0
+      @utilization = ((@this_months_raw_hours.to_f / @workable_hours) * 100).round
+    else
+      @utilization = 0
+    end
 
     respond_to do |format|
       format.html # index.html.erb
