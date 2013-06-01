@@ -37,7 +37,7 @@ class ServiceOrdersController < ApplicationController
     this_months_confirmations = current_user.confirmations.where("performed_on >= ? AND performed_on <= ?",
       first_day_of_month, last_day_of_month)
 
-    @this_months_raw_hours = this_months_confirmations.map(&:raw_hours).reduce(&:+)
+    @this_months_raw_hours = this_months_confirmations.map(&:raw_hours).reduce(&:+) || 0
 
     if @workable_hours > 0
       @utilization = ((@this_months_raw_hours.to_f / @workable_hours) * 100).round
